@@ -13,3 +13,5 @@ documentation = "https://docs.rs/kanye"
 
 [dependencies]
 ureq = "2.1.0"
+clap = "2.33.3"
+colored = "2.0.0"
