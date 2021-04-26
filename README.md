@@ -1,4 +1,8 @@
 # kanye-rs
+[![Crates.io](https://img.shields.io/crates/v/kanye.svg)](https://crates.io/crates/kanye)
+[![Crates.io](https://img.shields.io/crates/d/kanye)](https://crates.io/crates/kanye)
+[![API](https://docs.rs/kanye/badge.svg)](https://docs.rs/kanye)
+
 KAAS (Kanye As A Service)
 
 Prints out a random Kanye quote from the [kanye.rest](https://kanye.rest/) API.
