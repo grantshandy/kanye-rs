@@ -1,3 +1,5 @@
+use serde_json::Value;
+
 #[derive(Hash, PartialEq, Clone, Debug)]
 pub enum Error {
     Http(String),
@@ -21,7 +23,7 @@ impl std::fmt::Display for Error {
 
 
 pub fn quote() -> Result<String, Error> {
-    let response = match ureq::get("https://api.kanye.rest/?format=text").call() {
+    let response = match ureq::get("https://api.kanye.rest").call() {
         Ok(data) => data,
         Err(error) => return Err(Error::Http(error.to_string())),
     };
@@ -31,5 +33,15 @@ pub fn quote() -> Result<String, Error> {
         Err(_) => return Err(Error::Other),
     };
 
-    Ok(data)
+    let v: Value = match serde_json::from_str(&data) {
+        Ok(data) => data,
+        Err(_) => return Err(Error::Other),
+    };
+
+    let output = match &v["quote"] {
+        Value::String(output) => output.to_string(),
+        _ => return Err(Error::Other),
+    };
+
+    return Ok(output);
 }
